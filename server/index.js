@@ -2,7 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+
 const expenseRoutes = require("./routes/expense");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -11,14 +13,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-//auth route
-const authRoutes = require("./routes/auth");
+// Routes
 app.use("/api/auth", authRoutes);
-
-
 app.use("/api/expense", expenseRoutes);
-
-
 
 // Test route
 app.get("/", (req, res) => {
@@ -26,12 +23,22 @@ app.get("/", (req, res) => {
 });
 
 // DB + Server connect
-mongoose.connect("mongodb://localhost:27017/finance-tracker", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("✅ MongoDB connected");
-    app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+    app.listen(PORT, () =>
+      console.log(`🚀 Server running on port ${PORT}`)
+    );
   })
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1);
+  });
+
 // const express = require("express");
 // const app = express();
 // const expenseRoutes = require("./routes/expense"); // ✅ path to expense route file
