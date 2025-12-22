@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/expense", {
+      const res = await axios.get("https://finance-tracker-4-2eyg.onrender.com/api/expense", {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -30,7 +30,7 @@ const Dashboard = () => {
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/expense", {
+      const res = await axios.post("https://finance-tracker-4-2eyg.onrender.com/api/expense", {
         title,
         amount,
         type
@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/expense/${id}`, {
+      await axios.delete(`https://finance-tracker-4-2eyg.onrender.com/api/expense/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
