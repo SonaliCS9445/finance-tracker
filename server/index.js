@@ -12,11 +12,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(
   cors({
-<<<<<<< HEAD
     origin: "https://finance-tracker-zqe9.vercel.app",
-=======
-    origin: "https://finance-tracker-zqe9.vercel.app/",
->>>>>>> 9836c94621334533337f726ae3cf41adf68f55a2
     credentials: true,
   })
 );
@@ -48,11 +44,9 @@ mongoose
     console.error("❌ MongoDB connection error:", err);
     process.exit(1);
   });
-<<<<<<< HEAD
 =======
 
 // const express = require("express");
 // const app = express();
 // const expenseRoutes = require("./routes/expense"); // ✅ path to expense route file
->>>>>>> 9836c94621334533337f726ae3cf41adf68f55a2
 
