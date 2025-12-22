@@ -44,7 +44,6 @@ mongoose
     console.error("❌ MongoDB connection error:", err);
     process.exit(1);
   });
-=======
 
 // const express = require("express");
 // const app = express();
